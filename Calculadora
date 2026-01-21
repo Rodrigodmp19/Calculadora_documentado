@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Pokémon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .pokeball-calculator {
+            width: 450px;
+            height: 450px;
+            position: relative;
+            background: linear-gradient(to bottom, #dc2626 0%, #dc2626 48%, #1f2937 48%, #1f2937 52%, #f8f9fa 52%, #f8f9fa 100%);
+            border-radius: 20px;
+            box-shadow: 
+                0 0 0 12px #1f2937,
+                0 0 0 16px #fbbf24,
+                0 20px 60px rgba(0,0,0,0.5),
+                inset 0 10px 30px rgba(255,255,255,0.2),
+                inset 0 -10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .top-section {
+            height: 48%;
+            padding: 30px 25px 20px 25px;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .bottom-section {
+            height: 52%;
+            padding: 40px 25px 25px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%);
+        }
+        
+        .center-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #ffffff 0%, #e5e7eb 50%, #9ca3af 100%);
+            border-radius: 50%;
+            border: 8px solid #1f2937;
+            box-shadow: 
+                0 0 0 4px #fbbf24,
+                0 8px 20px rgba(0,0,0,0.4),
+                inset 0 4px 8px rgba(255,255,255,0.6),
+                inset 0 -4px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
+        .center-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #3b82f6 30%, #1e40af 100%);
+            border-radius: 50%;
+            border: 3px solid #1f2937;
+        }
+        
+        h1 {
+            color: #fef3c7;
+            text-align: center;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0 #991b1b, 5px 5px 10px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .input-group {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            font-size: 0.5em;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .top-section label {
+            color: #fef3c7;
+        }
+        
+        .bottom-section label {
+            color: #1f2937;
+        }
+        
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9em;
+            border: 3px solid #1f2937;
+            border-radius: 10px;
+            font-family: 'Press Start 2P', cursive;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        input[type="number"] {
+            background: #fef3c7;
+            color: #991b1b;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #fbbf24;
+            box-shadow: 0 0 12px rgba(251,191,36,0.6), inset 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        select {
+            cursor: pointer;
+            appearance: none;
+            background: #fef3c7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231f2937' d='M6 9L1 4h10z'/%3E%3C/svg%3E") no-repeat right 10px center;
+            color: #991b1b;
+            padding-right: 35px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #fbbf24;
+            box-shadow: 0 0 12px rgba(251,191,36,0.6), inset 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        .result-box {
+            background: linear-gradient(145deg, #3b82f6, #2563eb);
+            padding: 15px;
+            border-radius: 10px;
+            border: 3px solid #1f2937;
+            box-shadow: 
+                0 0 0 2px #fbbf24,
+                0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .result-box label {
+            color: #fef3c7;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        
+        #resultado {
+            background: #1f2937;
+            color: #fbbf24;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.3em;
+            border: 3px solid #fbbf24;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #resultado:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(251,191,36,0.8), inset 0 3px 6px rgba(0,0,0,0.2);
+        }
+        
+        .decoration {
+            position: absolute;
+            font-size: 1.5em;
+        }
+        
+        .deco-1 {
+            top: 15px;
+            right: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .deco-2 {
+            bottom: 15px;
+            left: 20px;
+            animation: float 3s ease-in-out infinite 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="pokeball-calculator">
+        <div class="top-section">
+            <h1>POKÉCALC</h1>
+            <div class="input-row">
+                <div class="input-group">
+                    <label>NUM 1</label>
+                    <input type="number" id="numero1" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label>NUM 2</label>
+                    <input type="number" id="numero2" placeholder="0">
+                </div>
+            </div>
+            <div class="decoration deco-1">⚡</div>
+        </div>
+        
+        <div class="center-button"></div>
+        
+        <div class="bottom-section">
+            <div class="input-group">
+                <label>OPERACIÓN</label>
+                <select id="operacion">
+                    <option value="">ELEGIR...</option>
+                    <option value="suma">➕ SUMA</option>
+                    <option value="resta">➖ RESTA</option>
+                    <option value="multiplicacion">✖️ MULTI</option>
+                    <option value="division">➗ DIVISIÓN</option>
+                </select>
+            </div>
+            
+            <div class="result-box">
+                <label>RESULTADO</label>
+                <input type="text" id="resultado" readonly placeholder="---">
+            </div>
+            
+            <div class="decoration deco-2">✨</div>
+        </div>
+    </div>
+
+    <script>
+        const numero1 = document.getElementById('numero1');
+        const numero2 = document.getElementById('numero2');
+        const operacion = document.getElementById('operacion');
+        const resultado = document.getElementById('resultado');
+
+        function calcular() {
+            const num1 = parseFloat(numero1.value);
+            const num2 = parseFloat(numero2.value);
+            const op = operacion.value;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                resultado.value = '---';
+                return;
+            }
+
+            if (!op) {
+                resultado.value = '---';
+                return;
+            }
+
+            let res;
+            switch(op) {
+                case 'suma':
+                    res = num1 + num2;
+                    break;
+                case 'resta':
+                    res = num1 - num2;
+                    break;
+                case 'multiplicacion':
+                    res = num1 * num2;
+                    break;
+                case 'division':
+                    if (num2 === 0) {
+                        resultado.value = 'ERROR!';
+                        return;
+                    }
+                    res = num1 / num2;
+                    break;
+            }
+
+            resultado.value = res.toFixed(2);
+        }
+
+        numero1.addEventListener('input', calcular);
+        numero2.addEventListener('input', calcular);
+        operacion.addEventListener('change', calcular);
+    </script>
+</body>
+</html>
