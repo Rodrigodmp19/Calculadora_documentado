@@ -135,4 +135,4 @@ Es un excelente punto de partida para combinar creatividad 🎨 y lógica 🧠 e
 - [ ] Añadir pin de usuario
 
 # Imagen desde una URL:
-![](https://es.wikipedia.org/wiki/MOS_6502#/media/Archivo:MOS_6502AD_4585_top.jpg)
+![Hola](https://es.wikipedia.org/wiki/MOS_6502#/media/Archivo:MOS_6502AD_4585_top.jpg)
