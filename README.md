@@ -128,3 +128,12 @@ POKÉCALC demuestra que aprender programación puede ser visual, divertido y pr�
 Es un excelente punto de partida para combinar creatividad 🎨 y lógica 🧠 en un solo proyecto.
 
 ¡Atrápalos todos… pero empezando por los números! ⚡✨
+
+# Tareas pendientes:
+- [x] Añadir funciones de memoria
+- [ ] Incluir conversión de binario a hex
+- [ ] Añadir pin de usuario
+
+# Imagen desde una URL:
+![](<img width="215" height="235" alt="imagen" src="https://github.com/user-attachments/assets/d2e7e574-39b8-4bb3-aa4f-18b19f46b1c3" />
+)
