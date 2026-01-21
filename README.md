@@ -17,8 +17,10 @@ El objetivo principal es **entender cómo trabajan juntas estas tres tecnología
 
 ## 📁 Estructura del proyecto
 
-En la versión inicial, todo el código se encuentra en un único archivo HTML.
+En la versión inicial, todo el código se encuentra en un único archivo HTML junto a su version documentada y su Markdown.
 
 ```text
 📦 calculadora-pokemon
  └── index.html
+ └── index_documentado.html
+ └── README.md
