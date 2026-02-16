@@ -138,7 +138,7 @@ Es un excelente punto de partida para combinar creatividad 🎨 y lógica 🧠 e
 ![Hola](https://m.media-amazon.com/images/I/41kupg-OFgL._AC_UF894,1000_QL80_.jpg)
 
 ## Código diagrama de clases 
-```mermamid
+'''mermamid
 classDiagram
     class Socio {
         -String idSocio
@@ -173,4 +173,4 @@ classDiagram
     Socio "1" o-- "0..*" Abono : mantiene (Agregación)
     Abono "1" *-- "1..*" Asiento : compuesto por (Composición)
     Partido "1" -- "0..*" Asiento : asignado a
-```
+'''
