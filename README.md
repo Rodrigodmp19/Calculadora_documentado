@@ -168,9 +168,9 @@ classDiagram
         ACTIVO
         VENCIDO
     }
-```
+
     %% Relaciones
     Socio "1" o-- "0..*" Abono : mantiene (Agregación)
     Abono "1" *-- "1..*" Asiento : compuesto por (Composición)
     Partido "1" -- "0..*" Asiento : asignado a
-'''
+```
