@@ -136,3 +136,41 @@ Es un excelente punto de partida para combinar creatividad 🎨 y lógica 🧠 e
 
 # Imagen desde una URL:
 ![Hola](https://m.media-amazon.com/images/I/41kupg-OFgL._AC_UF894,1000_QL80_.jpg)
+
+## Código diagrama de clases 
+```mermamid
+classDiagram
+    class Socio {
+        -String idSocio
+        -String nombre
+        -String email
+    }
+
+    class Abono {
+        -String numSerie
+        -double precio
+        -EstadoAbono estado
+    }
+
+    class Asiento {
+        -String zona
+        -int fila
+        -int numero
+    }
+
+    class Partido {
+        -String rival
+        -Date fecha
+    }
+
+    class EstadoAbono {
+        <<enumeration>>
+        ACTIVO
+        VENCIDO
+    }
+
+    %% Relaciones
+    Socio "1" o-- "0..*" Abono : mantiene (Agregación)
+    Abono "1" *-- "1..*" Asiento : compuesto por (Composición)
+    Partido "1" -- "0..*" Asiento : asignado a
+```
