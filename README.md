@@ -174,7 +174,7 @@ classDiagram
     Abono "1" *-- "1..*" Asiento : compuesto por (Composición)
     Partido "1" -- "0..*" Asiento : asignado a
 ```
-##MERMAID
+## MERMAID
 ```mermaid
 classDiagram
     class Scanner {
@@ -200,4 +200,38 @@ classDiagram
     Main ..> Scanner : usa para leer
     Main ..> Producto : instancia
     Main ..> CalculadoraIVA : consulta
+```
+## Diagrama de secuencias
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Usuario
+    participant Main
+    participant Scanner as sc: Scanner
+    participant Prod as prod: Producto
+    participant Calc as calc: CalculadoraIVA
+
+    Note over Main: Inicio del programa
+    Main->>Scanner: new Scanner(System.in)
+    Main->>Calc: new CalculadoraIVA()
+
+    Usuario->>Main: Escribe "Nombre"
+    Main->>Scanner: nextLine()
+    Scanner-->>Main: retorna String n
+
+    Usuario->>Main: Escribe "Precio"
+    Main->>Scanner: nextDouble()
+    Scanner-->>Main: retorna double p
+
+    Main->>Prod: new Producto(n, p)
+    Note right of Prod: Se guarda nombre y precioBase
+
+    Main->>Prod: getPrecioBase()
+    Prod-->>Main: p (precioBase)
+
+    Main->>Calc: calcularPrecioFinal(p)
+    Note over Calc: p * (1 + 0.21)
+    Calc-->>Main: precioFinal
+
+    Main->>Usuario: Imprime "Total con IVA: " + precioFinal
 ```
