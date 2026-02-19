@@ -193,21 +193,6 @@ classDiagram
         +main(String[] args)
     }
 
-    Main ..> Producto : Instancia
-    Main ..> CalculadoraIVA : Usa
-    Main ..> Scanner : Lee entrada
-sequenceDiagram
-    participant U as Usuario
-    participant M as Main
-    participant P as Producto
-    participant C as CalculadoraIVA
-
-    U->>M: Ingresa Nombre y Precio
-    M->>P: new Producto(nombre, precio)
-    M->>P: getPrecioBase()
-    P-->>M: retorna precioBase
-    M->>C: calcularPrecioFinal(precioBase)
-    Note right of C: precio * 1.21
-    C-->>M: retorna precioFinal
-    M->>U: Imprime "Total con IVA"
+    Main ..> Producto : crea
+    Main ..> CalculadoraIVA : usa
 ```
