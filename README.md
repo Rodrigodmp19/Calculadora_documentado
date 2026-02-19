@@ -177,10 +177,14 @@ classDiagram
 ##MERMAID
 ```mermaid
 classDiagram
+    class Scanner {
+        +nextLine() String
+        +nextDouble() double
+    }
+
     class Producto {
         -String nombre
         -double precioBase
-        +Producto(String nombre, double precioBase)
         +getPrecioBase() double
     }
 
@@ -193,6 +197,7 @@ classDiagram
         +main(String[] args)
     }
 
-    Main ..> Producto : crea
-    Main ..> CalculadoraIVA : usa
+    Main ..> Scanner : usa para leer
+    Main ..> Producto : instancia
+    Main ..> CalculadoraIVA : consulta
 ```
