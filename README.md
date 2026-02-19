@@ -176,46 +176,38 @@ classDiagram
 ```
 ##MERMAID
 ```mermaid
-import java.util.Scanner;
-
-/**
- * Clase que define la estructura de un Producto
- */
-class Producto {
-    private String nombre;
-    private double precioBase;
-
-    public Producto(String nombre, double precioBase) {
-        this.nombre = nombre;
-        this.precioBase = precioBase;
+classDiagram
+    class Producto {
+        -String nombre
+        -double precioBase
+        +Producto(String nombre, double precioBase)
+        +getPrecioBase() double
     }
 
-    public double getPrecioBase() { return precioBase; }
-}
-
-/**
- * Clase con la lógica de negocio (Impuestos)
- */
-class CalculadoraIVA {
-    private final double IVA = 0.21;
-
-    public double calcularPrecioFinal(double precio) {
-        return precio * (1 + IVA);
+    class CalculadoraIVA {
+        -double IVA
+        +calcularPrecioFinal(double precio) double
     }
-}
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System. some);
-        CalculadoraIVA calc = new CalculadoraIVA();
-
-        System.out.print("Nombre del producto: ");
-        String n = sc.nextLine();
-        System.out.print("Precio base: ");
-        double p = sc.nextDouble();
-
-        Producto prod = new Producto(n, p);
-        System.out.println("Total con IVA: " + calc.calcularPrecioFinal(prod.getPrecioBase()));
+    class Main {
+        +main(String[] args)
     }
-}
+
+    Main ..> Producto : Instancia
+    Main ..> CalculadoraIVA : Usa
+    Main ..> Scanner : Lee entrada
+sequenceDiagram
+    participant U as Usuario
+    participant M as Main
+    participant P as Producto
+    participant C as CalculadoraIVA
+
+    U->>M: Ingresa Nombre y Precio
+    M->>P: new Producto(nombre, precio)
+    M->>P: getPrecioBase()
+    P-->>M: retorna precioBase
+    M->>C: calcularPrecioFinal(precioBase)
+    Note right of C: precio * 1.21
+    C-->>M: retorna precioFinal
+    M->>U: Imprime "Total con IVA"
 ```
